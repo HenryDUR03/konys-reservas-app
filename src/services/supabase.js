@@ -1,12 +1,14 @@
+// Conexión con Supabase. Las claves vienen del archivo .env (nunca van en el código).
 import { createClient } from '@supabase/supabase-js'
 
 const url = import.meta.env.VITE_SUPABASE_URL
-const anonKey = import.meta.env.VITE_SUPABASE_ANON_KEY
+const key = import.meta.env.VITE_SUPABASE_ANON_KEY
 
-if (!url || !anonKey) {
+if (!url || !key) {
   throw new Error(
-    'Faltan las variables de entorno de Supabase. Copia .env.example a .env y completa VITE_SUPABASE_URL y VITE_SUPABASE_ANON_KEY.',
+    'Faltan VITE_SUPABASE_URL o VITE_SUPABASE_ANON_KEY. Revisa tu archivo .env y reinicia npm run dev.'
   )
 }
 
-export const supabase = createClient(url, anonKey)
+export const supabase = createClient(url, key)
+export default supabase
