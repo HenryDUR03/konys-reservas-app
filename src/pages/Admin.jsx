@@ -4,7 +4,10 @@ import { Link } from 'react-router-dom'
 import AdminLogin from '../components/admin/AdminLogin'
 import AdminMesas from '../components/admin/AdminMesas'
 import AdminHorarios from '../components/admin/AdminHorarios'
+import AdminReservas from '../components/admin/AdminReservas'
+import AdminCarta from '../components/admin/AdminCarta'
 import '../styles/admin.css'
+import '../styles/admin-extra.css'
 
 const SECCIONES = ['Mesas', 'Horarios', 'Reservas', 'Carta']
 const CLAVE_SESION = 'konys_admin'
@@ -52,9 +55,8 @@ export default function Admin() {
       <main className="adm-contenido">
         {seccion === 'Mesas' && <AdminMesas />}
         {seccion === 'Horarios' && <AdminHorarios />}
-        {(seccion === 'Reservas' || seccion === 'Carta') && (
-          <p>La sección {seccion} se agrega en el siguiente paso.</p>
-        )}
+        {seccion === 'Reservas' && <AdminReservas />}
+        {seccion === 'Carta' && <AdminCarta />}
       </main>
     </div>
   )

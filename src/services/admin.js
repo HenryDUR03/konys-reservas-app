@@ -1,4 +1,4 @@
-// Operaciones del panel de administración con Supabase (mesas y horarios).
+// Operaciones del panel de administración con Supabase: mesas, horarios, reservas y carta.
 import { supabase } from './supabase'
 
 // ---------- Mesas ----------
@@ -38,5 +38,57 @@ export async function listarHorarios() {
 
 export async function guardarHorario(id, campos) {
   const { error } = await supabase.from('horarios').update(campos).eq('id', id)
+  if (error) throw error
+}
+
+// ---------- Reservas ----------
+// Filtros opcionales: fecha ('2026-11-15') y mesaId. Trae también el nombre de la mesa.
+export async function listarReservas({ fecha, mesaId } = {}) {
+  let consulta = supabase
+    .from('reservas')
+    .select('*, mesas(nombre)')
+    .order('fecha')
+    .order('hora_inicio')
+  if (fecha) consulta = consulta.eq('fecha', fecha)
+  if (mesaId) consulta = consulta.eq('mesa_id', mesaId)
+  const { data, error } = await consulta
+  if (error) throw error
+  return data
+}
+
+export async function cambiarEstadoReserva(id, estado) {
+  const { error } = await supabase.from('reservas').update({ estado }).eq('id', id)
+  if (error) throw error
+}
+
+// ---------- Carta ----------
+const ORDEN_CATEGORIAS = ['pizzas', 'entradas', 'postres', 'bebidas']
+
+export async function listarPlatos() {
+  const { data, error } = await supabase.from('platos').select('*')
+  if (error) throw error
+  return data.sort(
+    (a, b) =>
+      ORDEN_CATEGORIAS.indexOf(a.categoria) - ORDEN_CATEGORIAS.indexOf(b.categoria) ||
+      a.nombre.localeCompare(b.nombre, 'es')
+  )
+}
+
+export async function guardarPlato(plato) {
+  const { id, ...campos } = plato
+  const consulta = id
+    ? supabase.from('platos').update(campos).eq('id', id)
+    : supabase.from('platos').insert(campos)
+  const { error } = await consulta
+  if (error) throw error
+}
+
+export async function cambiarDisponibilidadPlato(id, disponible) {
+  const { error } = await supabase.from('platos').update({ disponible }).eq('id', id)
+  if (error) throw error
+}
+
+export async function borrarPlato(id) {
+  const { error } = await supabase.from('platos').delete().eq('id', id)
   if (error) throw error
 }
