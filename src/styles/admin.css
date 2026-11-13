@@ -1,0 +1,62 @@
+/* Estilos del panel de administración */
+.adm { display: grid; grid-template-columns: 1fr; min-height: 100vh; background: var(--color-fondo); }
+.adm-lateral { background: var(--color-primario); color: #fff; padding: 1rem; display: flex; flex-direction: column; gap: 1rem; }
+.adm-marca { color: var(--color-acento); font-size: 1.1rem; }
+.adm-lateral nav { display: flex; flex-wrap: wrap; gap: 0.4rem; }
+.adm-nav { font: inherit; background: rgba(255, 255, 255, 0.08); color: #fff; border: 0; border-radius: 8px; padding: 0.55rem 0.9rem; cursor: pointer; text-align: left; }
+.adm-nav:hover { background: rgba(255, 255, 255, 0.18); }
+.adm-nav--activo { background: var(--color-acento); color: var(--color-primario); font-weight: 700; }
+.adm-pie { display: flex; flex-wrap: wrap; gap: 0.6rem; align-items: center; }
+.adm-pie a { color: #dbe4ea; font-size: 0.9rem; }
+.adm-contenido { padding: 1.25rem; min-width: 0; }
+
+.adm-titulo { display: flex; justify-content: space-between; align-items: center; gap: 1rem; flex-wrap: wrap; border-bottom: 2px solid var(--color-borde); padding-bottom: 0.75rem; margin-bottom: 1rem; }
+.adm-titulo h2 { color: var(--color-primario); font-size: 1.6rem; }
+.adm-ayuda { color: var(--color-suave); margin-bottom: 1rem; font-size: 0.92rem; }
+.adm-error { color: #a6291c; font-size: 0.85rem; font-weight: 500; }
+.adm-ok { color: #1f6b3a; font-size: 0.85rem; font-weight: 500; }
+
+/* Tablas */
+.adm-tabla { overflow-x: auto; background: #fff; border: 1px solid var(--color-borde); border-radius: 10px; }
+.adm table { width: 100%; border-collapse: collapse; font-size: 0.93rem; }
+.adm th { background: var(--color-primario); color: #fff; text-align: left; padding: 0.7rem 0.8rem; white-space: nowrap; }
+.adm td { padding: 0.6rem 0.8rem; border-bottom: 1px solid var(--color-borde); vertical-align: middle; }
+.adm tbody tr:last-child td { border-bottom: 0; }
+.adm td input[type='time'], .adm td input[type='number'] { font: inherit; padding: 0.3rem 0.4rem; border: 1px solid var(--color-borde); border-radius: 6px; }
+.adm-num { width: 5rem; }
+
+/* Botones pequeños y acciones */
+.adm-acciones { display: flex; gap: 0.5rem; flex-wrap: wrap; }
+.adm-mini { font: inherit; font-size: 0.85rem; padding: 0.3rem 0.8rem; background: #fff; border: 1px solid var(--color-primario); color: var(--color-primario); border-radius: 8px; cursor: pointer; }
+.adm-mini:hover { background: var(--color-primario); color: #fff; }
+.adm-mini--peligro { border-color: #a6291c; color: #a6291c; }
+.adm-mini--peligro:hover { background: #a6291c; color: #fff; }
+
+/* Interruptor activa / inactiva */
+.adm-switch { width: 42px; height: 24px; border-radius: 99px; border: 0; background: #b5bec5; padding: 2px; cursor: pointer; vertical-align: middle; transition: background 0.15s; }
+.adm-switch span { display: block; width: 20px; height: 20px; background: #fff; border-radius: 50%; transition: transform 0.15s; }
+.adm-switch--on { background: #1f6b3a; }
+.adm-switch--on span { transform: translateX(18px); }
+
+/* Ventana de mesa */
+.adm-modal { position: fixed; inset: 0; z-index: 100; background: rgba(15, 43, 61, 0.65); display: grid; place-items: center; padding: 1rem; overflow-y: auto; }
+.adm-modal__caja { background: #fff; border-radius: 14px; width: min(440px, 100%); padding: 1.5rem; display: flex; flex-direction: column; gap: 0.9rem; }
+.adm-modal__caja h2 { color: var(--color-primario); font-size: 1.3rem; }
+.adm-modal__caja label, .adm-login__caja label { display: flex; flex-direction: column; gap: 0.3rem; font-size: 0.9rem; font-weight: 500; }
+.adm-modal__caja input, .adm-modal__caja select, .adm-login__caja input { font: inherit; padding: 0.6rem 0.7rem; border: 1px solid var(--color-borde); border-radius: 8px; background: #fff; }
+.adm-modal__caja .adm-acciones { justify-content: flex-end; }
+.adm-modal__caja .boton--borde { width: auto; }
+
+/* Login */
+.adm-login { min-height: 100vh; display: grid; place-items: center; background: var(--color-primario); padding: 1rem; }
+.adm-login__caja { background: #fff; border-radius: 14px; padding: 2rem 1.5rem; width: min(380px, 100%); display: flex; flex-direction: column; gap: 1rem; }
+.adm-login__caja h1 { font-size: 1.4rem; color: var(--color-primario); }
+.adm-login__caja p { color: var(--color-suave); margin-top: -0.6rem; }
+.adm-volver { text-align: center; font-size: 0.88rem; color: var(--color-suave); }
+
+@media (min-width: 800px) {
+  .adm { grid-template-columns: 230px 1fr; }
+  .adm-lateral nav { flex-direction: column; }
+  .adm-pie { margin-top: auto; flex-direction: column; align-items: stretch; }
+  .adm-contenido { padding: 2rem; }
+}
