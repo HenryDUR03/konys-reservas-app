@@ -1,0 +1,56 @@
+/* Estilos de la ventana de reserva */
+.modal { position: fixed; inset: 0; z-index: 100; background: rgba(15, 43, 61, 0.65); display: grid; place-items: start center; overflow-y: auto; padding: 1rem; }
+.modal__caja { background: #fff; border-radius: 14px; width: min(920px, 100%); margin: 1rem 0; padding: 1.25rem; }
+.modal__cabecera { display: flex; justify-content: space-between; align-items: flex-start; gap: 1rem; border-bottom: 1px solid var(--color-borde); padding-bottom: 0.75rem; margin-bottom: 1rem; }
+.modal__cabecera h2 { font-size: 1.2rem; color: var(--color-primario); }
+.modal__cerrar { background: none; border: 0; font-size: 2rem; line-height: 1; cursor: pointer; color: var(--color-primario); }
+.modal__cuerpo { display: grid; grid-template-columns: 1fr; gap: 1.5rem; }
+.modal h3 { font-size: 1rem; color: var(--color-primario); margin: 0 0 0.6rem; }
+.modal__cuerpo > div > h3:not(:first-child) { margin-top: 1.5rem; }
+
+/* Días */
+.dias { display: grid; grid-template-columns: repeat(auto-fill, minmax(62px, 1fr)); gap: 0.4rem; }
+.dia { display: flex; flex-direction: column; align-items: center; padding: 0.4rem 0.2rem; font: inherit; font-size: 0.78rem; background: #fff; border: 1px solid var(--color-borde); border-radius: 8px; cursor: pointer; color: var(--color-texto); }
+.dia strong { font-size: 1.1rem; }
+.dia:hover:not(:disabled) { border-color: var(--color-primario); }
+.dia:disabled { background: #eef0f2; color: #aab3ba; cursor: not-allowed; }
+.dia--activo { background: var(--color-primario); border-color: var(--color-primario); color: #fff; }
+
+/* Horas */
+.slots { display: grid; grid-template-columns: repeat(3, 1fr); gap: 0.5rem; }
+.slot { font: inherit; font-weight: 600; padding: 0.65rem 0; background: #fff; border: 1px solid var(--color-primario); border-radius: 8px; cursor: pointer; color: var(--color-primario); }
+.slot:hover:not(:disabled) { background: #e7eef3; }
+.slot--ocupado { background: #dfe3e6; border-color: #dfe3e6; color: #8b969e; cursor: not-allowed; }
+.slot--activo, .slot--activo:hover { background: var(--color-primario); color: #fff; }
+.leyenda { display: flex; align-items: center; gap: 0.4rem; flex-wrap: wrap; font-size: 0.8rem; color: var(--color-suave); margin-top: 0.75rem; }
+.leyenda i { width: 12px; height: 12px; border-radius: 3px; display: inline-block; margin-left: 0.5rem; }
+.leyenda i:first-child { margin-left: 0; }
+.leyenda__libre { background: #fff; border: 1px solid var(--color-primario); }
+.leyenda__ocupado { background: #dfe3e6; }
+.leyenda__activo { background: var(--color-primario); }
+
+/* Formulario */
+.form { display: flex; flex-direction: column; gap: 0.9rem; }
+.form label { display: flex; flex-direction: column; gap: 0.3rem; font-size: 0.9rem; font-weight: 500; }
+.form input { font: inherit; padding: 0.6rem 0.7rem; border: 1px solid var(--color-borde); border-radius: 8px; }
+.form input:focus { outline: 2px solid var(--color-acento); border-color: var(--color-acento); }
+.error { color: #a6291c; font-size: 0.82rem; font-weight: 500; }
+.error--bloque { background: #fbeae8; padding: 0.6rem 0.8rem; border-radius: 8px; }
+.resumen { background: var(--color-fondo); border-radius: 8px; padding: 0.75rem 0.9rem; font-size: 0.9rem; }
+.resumen p { color: var(--color-suave); }
+.form .boton:disabled { opacity: 0.6; cursor: wait; }
+
+/* Confirmación */
+.confirmacion { text-align: center; padding: 1rem 0 0.5rem; max-width: 420px; margin: 0 auto; }
+.confirmacion__sello { width: 72px; height: 72px; margin: 0 auto 0.75rem; border-radius: 50%; border: 4px solid #1f6b3a; color: #1f6b3a; display: grid; place-items: center; font-weight: 800; font-size: 1.4rem; }
+.confirmacion h3 { font-size: 1.4rem; margin: 0; }
+.confirmacion__nota { color: var(--color-suave); font-size: 0.9rem; margin: 0.25rem 0 1rem; }
+.confirmacion dl { display: grid; grid-template-columns: auto 1fr; gap: 0.4rem 1rem; text-align: left; background: var(--color-fondo); padding: 1rem; border-radius: 10px; margin: 0 0 1.25rem; }
+.confirmacion dt { color: var(--color-suave); font-size: 0.9rem; }
+.confirmacion dd { margin: 0; font-weight: 600; }
+
+@media (min-width: 800px) {
+  .modal__caja { padding: 1.75rem; }
+  .modal__cuerpo { grid-template-columns: 1.1fr 1fr; gap: 2rem; }
+  .slots { grid-template-columns: repeat(4, 1fr); }
+}

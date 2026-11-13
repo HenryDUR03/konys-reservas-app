@@ -1,18 +1,17 @@
-// Página principal del cliente: hero, mesas, carta y pie de página.
+// Página principal del cliente: hero, mesas, carta, pie de página y ventana de reserva.
+import { useState } from 'react'
 import Header from '../components/Header'
 import Hero from '../components/Hero'
 import MesaCard from '../components/MesaCard'
 import Carta from '../components/Carta'
 import Footer from '../components/Footer'
+import ReservaModal from '../components/ReservaModal'
 import { useMesas } from '../hooks/useMesas'
 
 export default function Cliente() {
   const { datos: mesas, cargando, error } = useMesas()
-
-  // Por ahora solo registra la mesa elegida; el flujo de reserva se conecta en el siguiente paso.
-  function verHorarios(mesa) {
-    console.log('Mesa seleccionada:', mesa.id)
-  }
+  // Mesa elegida para reservar (null = ventana cerrada)
+  const [mesaSeleccionada, setMesaSeleccionada] = useState(null)
 
   return (
     <>
@@ -39,7 +38,7 @@ export default function Cliente() {
 
             <div className="mesas">
               {mesas.map((m) => (
-                <MesaCard key={m.id} mesa={m} onVerHorarios={verHorarios} />
+                <MesaCard key={m.id} mesa={m} onVerHorarios={setMesaSeleccionada} />
               ))}
             </div>
           </div>
@@ -48,6 +47,10 @@ export default function Cliente() {
         <Carta />
       </main>
       <Footer />
+
+      {mesaSeleccionada && (
+        <ReservaModal mesa={mesaSeleccionada} onCerrar={() => setMesaSeleccionada(null)} />
+      )}
     </>
   )
 }
