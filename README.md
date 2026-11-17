@@ -6,7 +6,7 @@ Aplicación web académica para la pizzería Konys (Cra. 36 con calle 41, Bucara
 
 - **Aplicación desplegada:** https://konys-reservas-app-sigma.vercel.app
 - **Repositorio:** https://github.com/HenryDUR03/konys-reservas-app
-- **Video explicativo:** (pendiente)
+- **Video explicativo:** https://youtu.be/-lYvejARWpQ
 
 ## Funcionalidades
 
